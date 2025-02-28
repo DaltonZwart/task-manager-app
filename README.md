@@ -8,8 +8,8 @@ This is a full-stack Task Manager application built with:
 - **Deployment:** Flask API on Render, React frontend on Vercel  
 
 ## 🔗 Live Demo  
-- 🖥 **Frontend:** [Task Manager UI](https://task-manager-frontend.vercel.app)  
-- ⚙️ **Backend API:** [Task Manager API](https://task-manager-app.onrender.com/tasks)  
+- 🖥 **Frontend:** https://task-manager-ljnukodwp-dalton-zwarts-projects.vercel.app/
+- ⚙️ **Backend API:**
 
 ## 🚀 Features
 ✅ Add tasks  
