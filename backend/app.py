@@ -24,7 +24,9 @@ class Task(db.Model):
 
 # Ensure tables are created before running the app
 with app.app_context():
-    db.create_all()
+    if not os.path.exists("tasks.db"):
+        print("Database not found. Creating a new one...")
+        db.create_all()
 
 # Home route
 @app.route("/")
