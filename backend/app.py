@@ -5,18 +5,24 @@ import os
 
 # Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Enable CORS to allow frontend requests
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow CORS
 
-# Database configuration (SQLite for simplicity)
+# Database configuration
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
+# Define Task model
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    completed = db.Column(db.Boolean, default=False)
 
 # Ensure tables are created before running the app
 with app.app_context():
     db.create_all()
 
-# Home route to check if API is running
+# Home route
 @app.route("/")
 def home():
     return "Flask API is running!", 200
@@ -40,7 +46,7 @@ def add_task():
     db.session.commit()
     return jsonify({"message": "Task added successfully"}), 201
 
-# Update a task (mark complete/incomplete)
+# Update a task
 @app.route("/tasks/<int:task_id>", methods=["PUT"])
 def update_task(task_id):
     task = Task.query.get(task_id)
@@ -67,8 +73,9 @@ def delete_task(task_id):
 
 # Run the Flask app
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # Use Render's assigned port
+    port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
 
 
 
