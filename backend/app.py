@@ -12,15 +12,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-# Define Task model
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(200), nullable=False)
-    completed = db.Column(db.Boolean, default=False)
-
-# Create database tables before the first request
-@app.before_first_request
-def create_tables():
+# Ensure tables are created before running the app
+with app.app_context():
     db.create_all()
 
 # Home route to check if API is running
@@ -76,5 +69,6 @@ def delete_task(task_id):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Use Render's assigned port
     app.run(host="0.0.0.0", port=port)
+
 
 
