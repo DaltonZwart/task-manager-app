@@ -1,0 +1,15 @@
+# Ignore Python virtual environment
+venv/
+
+# Ignore SQLite database
+backend/tasks.db
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore Node.js dependencies
+frontend/task-manager-ui/node_modules/
+frontend/task-manager-ui/.env
+
+# Ignore build files
+frontend/task-manager-ui/build/
