@@ -31,3 +31,8 @@ flask run
 cd task-manager-frontend
 npm install
 npm start
+
+✅ Built a React frontend and a Flask backend
+✅ Set up a database (SQLite) and API endpoints
+✅ Deployed the backend on Render and the frontend on Vercel
+✅ Fixed all issues, connected everything to GitHub, and made it public
